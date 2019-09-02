@@ -1,0 +1,19 @@
+---
+version: "2"
+services:
+  resilio-sync:
+    image: linuxserver/resilio-sync
+    container_name: resilio-sync
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+      - UMASK_SET=022
+    volumes:
+      - /home/docker/sync/config:/config
+      - /home/docker/sync/downloads:/downloads
+      - /home/docker/sync/data:/sync
+    ports:
+      - 8888:8888
+      - 55555:55555
+    restart: unless-stopped
